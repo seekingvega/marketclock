@@ -1,0 +1,4 @@
+pandas-market-calendars>=3.2
+businessdate==0.5
+fastapi==0.58.0
+uvicorn==0.11.5
