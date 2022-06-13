@@ -3,7 +3,7 @@ from fastapi import FastAPI, File, UploadFile, Request, Response, HTTPException
 from typing import List, Tuple, Union
 from pydantic import BaseModel
 
-app_version = 0.01
+app_version = 0.02
 b_add_app_name = os.getenv("ADD_APP_NAME", 'False').lower() in ['true', '1', 't']
 app_name = '/marketclock' if b_add_app_name else '' # This is for applications routing with $uri in ngnix config
 app = FastAPI(
@@ -36,7 +36,7 @@ async def check_by_exchange(exchange: str):
 
 	* `exchange_name`: must be a valid exchange name (see `/exchanges` endpoint)
 	'''
-	return Main(exchange_name = exchange)
+	return Main(exchange_name = exchange, datetime_obj= datetime.datetime.now())
 
 @app.get(f"{app_name}/exchanges")
 def get_exchanges():
